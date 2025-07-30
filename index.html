@@ -3,441 +3,447 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sheron Airways</title>
+    <title>Sheron Airways - Flight Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');
-            background-size: cover;
-            background-position: center;
-            transition: background-image 1s ease-in-out;
+        .font-display {
+            font-family: 'Arial', sans-serif;
         }
-        .destination-card {
-            transition: all 0.3s ease;
+        .sidebar {
+            background-color: #1e3a8a;
         }
-        .destination-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .navy-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
         }
     </style>
 </head>
-<body class="font-sans bg-gray-100">
-    <!-- Header -->
-    <header class="flex items-center justify-between px-8 py-4 bg-[#0A1A3F] sticky top-0 z-50 shadow-lg">
-        <div class="text-2xl font-bold text-white flex items-center">
-            <i class="fas fa-plane text-blue-400 mr-2"></i>
-            Sheron Airways
+<body class="bg-gray-100 font-sans">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar fixed inset-y-0 left-0 z-40 w-64 bg-navy-900 text-white transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+            <div class="flex items-center justify-center h-16 px-4 border-b border-navy-800 navy-gradient">
+                <div class="flex items-center font-display">
+                    <i class="fas fa-plane text-blue-300 mr-2 transform rotate-45"></i>
+                    <span class="text-xl font-bold">SHERON AIRWAYS</span>
+                </div>
+            </div>
+            <div class="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto">
+                <nav class="flex-1 px-2 space-y-1">
+                    <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-blue-100 bg-navy-700 rounded-md group">
+                        <i class="fas fa-tachometer-alt mr-3 text-blue-300"></i>
+                        Dashboard
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-navy-700 rounded-md group">
+                        <i class="fas fa-users mr-3 text-blue-300"></i>
+                        Passengers
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-white bg-navy-700 rounded-md group">
+                        <i class="fas fa-plane-departure mr-3 text-blue-300"></i>
+                        Flights
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-navy-700 rounded-md group">
+                        <i class="fas fa-route mr-3 text-blue-300"></i>
+                        Routes
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-navy-700 rounded-md group">
+                        <i class="fas fa-chart-bar mr-3 text-blue-300"></i>
+                        Analytics
+                    </a>
+                    <a href="#" class="flex items-center px-4 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-navy-700 rounded-md group">
+                        <i class="fas fa-cog mr-3 text-blue-300"></i>
+                        Settings
+                    </a>
+                </nav>
+            </div>
+            <div class="p-4 border-t border-navy-700">
+                <button class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                </button>
+            </div>
         </div>
 
-        <nav class="flex items-center space-x-8">
-            <!-- Dropdown: Explore -->
-            <div class="relative group">
-                <button class="text-white hover:text-blue-300 flex items-center">
-                    Explore <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                </button>
-                <div class="absolute hidden group-hover:block mt-3 left-0 w-64 bg-white rounded-lg shadow-xl p-4">
-                    <div class="flex items-center mb-3 text-blue-600">
-                        <i class="fas fa-map-marked-alt mr-2"></i>
-                        <h3 class="font-bold">Discover</h3>
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="flex items-center justify-between px-6 py-4 bg-white border-b border-gray-200">
+                <div class="flex items-center">
+                    <button id="sidebarToggle" class="text-gray-500 focus:outline-none md:hidden">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="flex items-center ml-4 font-display">
+                        <i class="fas fa-plane text-blue-500 mr-2 transform rotate-45"></i>
+                        <h1 class="text-xl font-bold text-gray-800">SHERON AIRWAYS <span class="font-normal text-gray-600">| Flight Management</span></h1>
                     </div>
-                    <a href="destination.html" class="block px-3 py-2 hover:bg-blue-50 rounded-lg flex items-center">
-                        <i class="fas fa-location-dot text-blue-500 mr-2 w-5"></i>
-                        <div>
-                            <p class="font-medium">Destinations</p>
-                            <p class="text-xs text-gray-500">Find your perfect getaway</p>
-                        </div>
-                    </a>
-                    <a href="#" class="block px-3 py-2 hover:bg-blue-50 rounded-lg flex items-center">
-                        <i class="fas fa-book-open text-blue-500 mr-2 w-5"></i>
-                        <div>
-                            <p class="font-medium">Travel Guide</p>
-                            <p class="text-xs text-gray-500">Expert tips for your journey</p>
-                        </div>
-                    </a>
                 </div>
-            </div>
-
-            <!-- Dropdown: Book -->
-            <div class="relative group">
-                <button class="text-white hover:text-blue-300 flex items-center">
-                    Book <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                </button>
-                <div class="absolute hidden group-hover:block mt-3 left-0 w-64 bg-white rounded-lg shadow-xl p-4">
-                    <div class="flex items-center mb-3 text-blue-600">
-                        <i class="fas fa-calendar-check mr-2"></i>
-                        <h3 class="font-bold">Reservations</h3>
-                    </div>
-                    <a href="#" class="block px-3 py-2 hover:bg-blue-50 rounded-lg flex items-center">
-                        <i class="fas fa-plane-departure text-blue-500 mr-2 w-5"></i>
-                        <div>
-                            <p class="font-medium">Flights</p>
-                            <p class="text-xs text-gray-500">Book your next adventure</p>
-                        </div>
-                    </a>
-                    <a href="#" class="block px-3 py-2 hover:bg-blue-50 rounded-lg flex items-center">
-                        <i class="fas fa-hotel text-blue-500 mr-2 w-5"></i>
-                        <div>
-                            <p class="font-medium">Hotels</p>
-                            <p class="text-xs text-gray-500">Find the perfect stay</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Dropdown: Experience -->
-            <div class="relative group">
-                <button class="text-white hover:text-blue-300 flex items-center">
-                    Experience <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                </button>
-                <div class="absolute hidden group-hover:block mt-3 left-0 w-64 bg-white rounded-lg shadow-xl p-4">
-                    <div class="flex items-center mb-3 text-blue-600">
-                        <i class="fas fa-star mr-2"></i>
-                        <h3 class="font-bold">Journey</h3>
-                    </div>
-                    <a href="#" class="block px-3 py-2 hover:bg-blue-50 rounded-lg flex items-center">
-                        <i class="fas fa-utensils text-blue-500 mr-2 w-5"></i>
-                        <div>
-                            <p class="font-medium">Onboard</p>
-                            <p class="text-xs text-gray-500">Gourmet dining & comfort</p>
-                        </div>
-                    </a>
-                    <a href="#" class="block px-3 py-2 hover:bg-blue-50 rounded-lg flex items-center">
-                        <i class="fas fa-luggage-cart text-blue-500 mr-2 w-5"></i>
-                        <div>
-                            <p class="font-medium">Airport</p>
-                            <p class="text-xs text-gray-500">Premium lounge access</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <a href="#about" class="text-white hover:text-blue-300">About Us</a>
-            <a href="#" class="text-white hover:text-blue-300" id="loginBtn">Login</a>
-            <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg" id="signupBtn">Sign Up</a>
-            <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg hidden" id="logoutBtn">Logout</a>
-        </nav>
-    </header>
-
-    <!-- Hero Section with Destination Gallery -->
-    <section class="hero-bg h-[70vh] flex flex-col justify-center items-center text-center px-4">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">5 must-visit destinations for your summer holiday</h1>
-        <a href="destination.html" class="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-medium shadow-lg transition-all hover:scale-105">
-            Explore Destinations <i class="fas fa-arrow-right ml-2"></i>
-        </a>
-
-        <!-- Gallery Controls -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4">
-            <button class="w-10 h-10 bg-black bg-opacity-50 flex items-center justify-center rounded-full hover:bg-opacity-70" onclick="prevDestination()">
-                <i class="fas fa-chevron-left text-white"></i>
-            </button>
-            <button class="w-10 h-10 bg-black bg-opacity-50 flex items-center justify-center rounded-full hover:bg-opacity-70" onclick="nextDestination()">
-                <i class="fas fa-chevron-right text-white"></i>
-            </button>
-        </div>
-    </section>
-
-    <!-- Booking Section -->
-    <section class="bg-white text-black rounded-t-3xl px-8 py-8 relative z-10 shadow-xl -mt-10 mx-4">
-        <form class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div>
-                <label class="block text-sm font-medium mb-1">From</label>
-                <div class="relative">
-                    <i class="fas fa-plane-departure absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                    <input type="text" class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Colombo CMB">
-                </div>
-            </div>
-            <div>
-                <label class="block text-sm font-medium mb-1">To</label>
-                <div class="relative">
-                    <i class="fas fa-plane-arrival absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                    <input type="text" class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Destination">
-                </div>
-            </div>
-            <div>
-                <label class="block text-sm font-medium mb-1">Departure</label>
-                <div class="relative">
-                    <i class="far fa-calendar-alt absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                    <input type="date" class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                </div>
-            </div>
-            <div>
-                <label class="block text-sm font-medium mb-1">Return</label>
-                <div class="relative">
-                    <i class="far fa-calendar-alt absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                    <input type="date" class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                </div>
-            </div>
-            <div class="md:col-span-4 flex justify-center">
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-medium shadow-lg w-full md:w-auto">
-                    <i class="fas fa-search mr-2"></i> Search Flights
-                </button>
-            </div>
-        </form>
-    </section>
-
-    <!-- Destinations Section -->
-    <section class="px-6 py-16 max-w-7xl mx-auto">
-        <h2 class="text-3xl font-bold mb-12 text-center text-gray-800">Summer Holiday Destinations</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="destination-card rounded-xl shadow-lg relative overflow-hidden h-80 bg-cover bg-center"
-                 style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80')">
-                <div class="absolute bottom-0 left-0 p-6 text-white">
-                    <h3 class="text-2xl font-bold">Paris, France</h3>
-                    <p class="text-blue-200 font-medium">From $499</p>
-                    <p class="text-sm mt-2">The city of love and lights</p>
-                    <button class="mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
-                        Book Now <i class="fas fa-arrow-right ml-1"></i>
+                <div class="flex items-center">
+                    <button class="flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        <i class="fas fa-sign-out-alt mr-2"></i> Logout
                     </button>
                 </div>
-            </div>
+            </header>
 
-            <div class="destination-card rounded-xl shadow-lg relative overflow-hidden h-80 bg-cover bg-center"
-                 style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/3408354/pexels-photo-3408354.jpeg')">
-                <div class="absolute bottom-0 left-0 p-6 text-white">
-                    <h3 class="text-2xl font-bold">Tokyo, Japan</h3>
-                    <p class="text-blue-200 font-medium">From $799</p>
-                    <p class="text-sm mt-2">Where tradition meets future</p>
-                    <button class="mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
-                        Book Now <i class="fas fa-arrow-right ml-1"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="destination-card rounded-xl shadow-lg relative overflow-hidden h-80 bg-cover bg-center"
-                 style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')">
-                <div class="absolute bottom-0 left-0 p-6 text-white">
-                    <h3 class="text-2xl font-bold">New York, USA</h3>
-                    <p class="text-blue-200 font-medium">From $599</p>
-                    <p class="text-sm mt-2">The city that never sleeps</p>
-                    <button class="mt-3 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
-                        Book Now <i class="fas fa-arrow-right ml-1"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-10">
-            <a href="destination.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium shadow-lg">
-                View All Destinations <i class="fas fa-arrow-right ml-2"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section id="about" class="bg-[#0A1A3F] text-white px-6 py-16">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold mb-12 text-center">About Sheron Airways</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-xl font-semibold mb-4 flex items-center">
-                        <i class="fas fa-history text-blue-400 mr-3"></i> Our Story
-                    </h3>
-                    <p class="text-gray-300 leading-relaxed">
-                        Founded in 2023, Sheron Airways has quickly become a leader in international air travel.
-                        We started with a single route and now serve over 50 destinations worldwide, bringing
-                        people together across continents with our award-winning service.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4 flex items-center">
-                        <i class="fas fa-bullseye text-blue-400 mr-3"></i> Our Mission
-                    </h3>
-                    <p class="text-gray-300 leading-relaxed">
-                        To connect the world through exceptional air travel experiences. We're committed to
-                        safety, comfort, and sustainability, ensuring every journey with us is memorable
-                        from takeoff to landing.
-                    </p>
-                </div>
-            </div>
-            <div class="mt-16">
-                <h3 class="text-xl font-semibold mb-8 text-center flex items-center justify-center">
-                    <i class="fas fa-star text-blue-400 mr-3"></i> Why Fly With Us?
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-[#142857] p-6 rounded-lg">
-                        <i class="fas fa-shield-alt text-blue-400 text-2xl mb-3"></i>
-                        <h4 class="font-bold mb-2">Industry-leading Safety</h4>
-                        <p class="text-gray-300 text-sm">Top-ranked safety record with modern aircraft</p>
-                    </div>
-                    <div class="bg-[#142857] p-6 rounded-lg">
-                        <i class="fas fa-medal text-blue-400 text-2xl mb-3"></i>
-                        <h4 class="font-bold mb-2">Award-winning Service</h4>
-                        <p class="text-gray-300 text-sm">Consistently rated 5-stars by passengers</p>
-                    </div>
-                    <div class="bg-[#142857] p-6 rounded-lg">
-                        <i class="fas fa-leaf text-blue-400 text-2xl mb-3"></i>
-                        <h4 class="font-bold mb-2">Sustainable Travel</h4>
-                        <p class="text-gray-300 text-sm">Carbon-neutral flights and eco-initiatives</p>
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
+                <!-- Page Header -->
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-semibold text-gray-800">Flight Operations</h2>
+                    <div class="flex space-x-3">
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <i class="fas fa-plus mr-2"></i> Add Flight
+                        </button>
+                        <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                            <i class="fas fa-sync-alt mr-2"></i> Refresh
+                        </button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="bg-[#050E28] text-gray-400 py-8">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-white font-bold mb-4">Sheron Airways</h3>
-                    <p class="text-sm">Connecting you to the world with exceptional service and comfort.</p>
+                <!-- Tabs -->
+                <div class="mb-6 border-b border-gray-200">
+                    <nav class="flex -mb-px space-x-8">
+                        <a href="#" class="py-4 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600">
+                            <i class="fas fa-plane mr-2"></i>Active Flights
+                        </a>
+                        <a href="#" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            <i class="fas fa-history mr-2"></i>Flight History
+                        </a>
+                        <a href="#" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            <i class="fas fa-route mr-2"></i>Flight Routes
+                        </a>
+                        <a href="#" class="py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                            <i class="fas fa-chart-line mr-2"></i>Statistics
+                        </a>
+                    </nav>
                 </div>
-                <div>
-                    <h4 class="text-white font-bold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="hover:text-white">Home</a></li>
-                        <li><a href="destination.html" class="hover:text-white">Destinations</a></li>
-                        <li><a href="#" class="hover:text-white">Flights</a></li>
-                        <li><a href="#about" class="hover:text-white">About Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-4">Support</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-white">Contact Us</a></li>
-                        <li><a href="#" class="hover:text-white">FAQs</a></li>
-                        <li><a href="#" class="hover:text-white">Baggage Policy</a></li>
-                        <li><a href="#" class="hover:text-white">Terms & Conditions</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-white font-bold mb-4">Connect</h4>
-                    <div class="flex space-x-4">
-                        <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+
+                <!-- Flight Management Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                    <!-- Add Flight Card -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-medium text-gray-900">
+                                <i class="fas fa-plus-circle text-blue-500 mr-2"></i> Add New Flight
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <form>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="flight-number">
+                                        Flight Number
+                                    </label>
+                                    <input class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="flight-number" type="text" placeholder="SHA123">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="departure">
+                                            Departure
+                                        </label>
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="departure">
+                                            <option>Select Airport</option>
+                                            <option>JFK - New York</option>
+                                            <option>LAX - Los Angeles</option>
+                                            <option>ORD - Chicago</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="arrival">
+                                            Arrival
+                                        </label>
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="arrival">
+                                            <option>Select Airport</option>
+                                            <option>JFK - New York</option>
+                                            <option>LAX - Los Angeles</option>
+                                            <option>ORD - Chicago</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="departure-time">
+                                            Departure Time
+                                        </label>
+                                        <input class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="departure-time" type="datetime-local">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="arrival-time">
+                                            Arrival Time
+                                        </label>
+                                        <input class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="arrival-time" type="datetime-local">
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="aircraft">
+                                        Aircraft
+                                    </label>
+                                    <select class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="aircraft">
+                                        <option>Select Aircraft</option>
+                                        <option>Boeing 737-800</option>
+                                        <option>Airbus A320</option>
+                                        <option>Boeing 787 Dreamliner</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    Add Flight
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Update Flight Card -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-medium text-gray-900">
+                                <i class="fas fa-edit text-green-500 mr-2"></i> Update Flight
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <form>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="select-flight">
+                                        Select Flight to Update
+                                    </label>
+                                    <select class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="select-flight">
+                                        <option>Select Flight</option>
+                                        <option>SHA101 - JFK to LAX</option>
+                                        <option>SHA202 - ORD to JFK</option>
+                                        <option>SHA303 - LAX to ORD</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="flight-status">
+                                        Flight Status
+                                    </label>
+                                    <select class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="flight-status">
+                                        <option>Scheduled</option>
+                                        <option>Delayed</option>
+                                        <option>Departed</option>
+                                        <option>In Air</option>
+                                        <option>Landed</option>
+                                        <option>Cancelled</option>
+                                    </select>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="new-departure">
+                                        New Departure Time
+                                    </label>
+                                    <input class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="new-departure" type="datetime-local">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="new-arrival">
+                                        New Arrival Time
+                                    </label>
+                                    <input class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="new-arrival" type="datetime-local">
+                                </div>
+                                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                    Update Flight
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Flight Routes Card -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-medium text-gray-900">
+                                <i class="fas fa-route text-purple-500 mr-2"></i> Manage Flight Routes
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <form>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="route-name">
+                                        Route Name
+                                    </label>
+                                    <input class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="route-name" type="text" placeholder="e.g. Transcontinental">
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="origin">
+                                            Origin
+                                        </label>
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="origin">
+                                            <option>Select Airport</option>
+                                            <option>JFK - New York</option>
+                                            <option>LAX - Los Angeles</option>
+                                            <option>ORD - Chicago</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium mb-2" for="destination">
+                                            Destination
+                                        </label>
+                                        <select class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="destination">
+                                            <option>Select Airport</option>
+                                            <option>JFK - New York</option>
+                                            <option>LAX - Los Angeles</option>
+                                            <option>ORD - Chicago</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="distance">
+                                        Distance (miles)
+                                    </label>
+                                    <input class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="distance" type="number" placeholder="e.g. 1500">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-medium mb-2" for="duration">
+                                        Estimated Duration
+                                    </label>
+                                    <input class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" id="duration" type="text" placeholder="e.g. 3h 45m">
+                                </div>
+                                <div class="flex space-x-3">
+                                    <button type="submit" class="flex-1 justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                                        Add Route
+                                    </button>
+                                    <button type="button" class="flex-1 justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        View All
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm">
-                <p>© 2025 Sheron Airways. All rights reserved.</p>
-            </div>
+
+                <!-- Active Flights Table -->
+                <div class="bg-white shadow rounded-lg overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">
+                            <i class="fas fa-plane-departure text-blue-500 mr-2"></i> Active Flights
+                        </h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Flight #
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Route
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Departure
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Arrival
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Status
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Aircraft
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        SHA101
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        JFK → LAX
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        2023-06-15 08:00
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        2023-06-15 11:30
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            On Time
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        B737-800
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">Edit</a>
+                                        <a href="#" class="text-red-600 hover:text-red-900">Cancel</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        SHA202
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        ORD → JFK
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        2023-06-15 10:15
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        2023-06-15 13:00
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                            Delayed
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        A320
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">Edit</a>
+                                        <a href="#" class="text-red-600 hover:text-red-900">Cancel</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        SHA303
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        LAX → ORD
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        2023-06-15 14:30
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        2023-06-15 19:45
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                            In Air
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        B787
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">Edit</a>
+                                        <a href="#" class="text-red-600 hover:text-red-900">Cancel</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+                        <div class="text-sm text-gray-500">
+                            Showing <span class="font-medium">1</span> to <span class="font-medium">3</span> of <span class="font-medium">24</span> flights
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                Previous
+                            </button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
-    </footer>
+    </div>
 
     <script>
-        // Photo shuffle functionality for hero section
-        const destinations = [
-            'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80',
-            'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80',
-            'https://images.pexels.com/photos/1797161/pexels-photo-1797161.jpeg',
-            'https://images.unsplash.com/photo-1518391846015-55a9cc003b25?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-            'https://images.unsplash.com/photo-1498307833015-e7b400441eb8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2028&q=80'
-        ];
-
-        let currentDestination = 0;
-        const heroSection = document.querySelector('.hero-bg');
-
-        function changeBackground() {
-            currentDestination = (currentDestination + 1) % destinations.length;
-            heroSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${destinations[currentDestination]}')`;
-        }
-
-        function nextDestination() {
-            changeBackground();
-        }
-
-        function prevDestination() {
-            currentDestination = (currentDestination - 1 + destinations.length) % destinations.length;
-            heroSection.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${destinations[currentDestination]}')`;
-        }
-
-        // Auto shuffle every 5 seconds
-        setInterval(changeBackground, 5000);
-
-        // Cookie and authentication functions
-        function getCookie(name) {
-            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-            return match ? match[2] : null;
-        }
-
-        function isLoggedIn() {
-            return getCookie("loggedIn") === "true";
-        }
-
-        function checkAuth(event) {
-            if (!isLoggedIn()) {
-                event.preventDefault();
-                window.location.href = "signin.html";
-                return false;
-            }
-            return true;
-        }
-
-        function protectButtonsAndLinks() {
-            // Protect booking buttons
-            document.querySelectorAll('.destination-card button').forEach(btn => {
-                btn.addEventListener("click", function(e) {
-                    if (!isLoggedIn()) {
-                        e.preventDefault();
-                        window.location.href = "signin.html";
-                    }
-                });
-            });
-
-            // Protect navigation links (excluding #about anchor)
-            document.querySelectorAll('nav a:not([href="#about"])').forEach(link => {
-                link.addEventListener("click", function(e) {
-                    if (!isLoggedIn()) {
-                        e.preventDefault();
-                        window.location.href = "signin.html";
-                    }
-                });
-            });
-
-            // Update UI based on login status
-            const loginBtn = document.getElementById('loginBtn');
-            const signupBtn = document.getElementById('signupBtn');
-            const logoutBtn = document.getElementById('logoutBtn');
-
-            if (isLoggedIn()) {
-                loginBtn.classList.add('hidden');
-                signupBtn.classList.add('hidden');
-                logoutBtn.classList.remove('hidden');
-
-                // Add logout functionality
-                logoutBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    document.cookie = "loggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                    window.location.href = "index.html";
-                });
-            } else {
-                loginBtn.classList.remove('hidden');
-                signupBtn.classList.remove('hidden');
-                logoutBtn.classList.add('hidden');
-
-                // Add login/signup functionality
-                loginBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.location.href = "signin.html";
-                });
-
-                signupBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.location.href = "signup.html";
-                });
-            }
-        }
-
-        // Check user role
-        function checkUserRole() {
-            const role = getCookie('userRole');
-            if (role === 'user') {
-                console.log('Welcome back, user!');
-            }
-            else if (role === 'admin') {
-                console.log('Welcome back, admin!');
-            }
-            else {
-                console.log('Welcome back, guest!');
-            }
-        }
-
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            protectButtonsAndLinks();
-            checkUserRole();
+        // Toggle sidebar on mobile
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
         });
     </script>
 </body>
